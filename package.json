@@ -1,0 +1,34 @@
+{
+  "name": "chemical-auditor-back",
+  "version": "1.0.0",
+  "description": "Chemical Auditor Back",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mawstack/chemical-auditor-back.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mawstack/chemical-auditor-back/issues"
+  },
+  "homepage": "https://github.com/mawstack/chemical-auditor-back#readme",
+  "dependencies": {
+    "axios": "^0.19.1",
+    "body-parser": "^1.19.0",
+    "celebrate": "^11.0.1",
+    "connect-mongo": "^3.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jest": "^24.9.0",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.8.9",
+    "mongoose-bcrypt": "^1.6.0",
+    "nodemon": "^2.0.2",
+    "passport": "^0.4.1"
+  }
+}
