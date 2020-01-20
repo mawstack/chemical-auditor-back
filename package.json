@@ -4,7 +4,8 @@
   "description": "Chemical Auditor Back",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -24,11 +25,13 @@
     "connect-mongo": "^3.2.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "jest": "^24.9.0",
     "lodash": "^4.17.15",
     "mongoose": "^5.8.9",
     "mongoose-bcrypt": "^1.6.0",
     "nodemon": "^2.0.2",
     "passport": "^0.4.1"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }
