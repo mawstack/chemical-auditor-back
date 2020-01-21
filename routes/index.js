@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const userRoutes = require("./user_routes");
-
+const entryRoutes = require("./entry_routes");
 
 
 router.use("/users", userRoutes);
+router.use("/entries", entryRoutes);
 module.exports = router;
 
 
@@ -29,7 +30,7 @@ POST /entries - Create entry
 GET /entries/:id - Show entry (view)
 DELETE /entries/:id - Destroy entry
 GET /entries/:id/edit - Edit entry (view)
-PUT+PATCH /entries/:id - Update entry
+PUT /entries/:id - Update entry
 
 Pages (Other Routes)
 GET /login - Login (view) (REACT ONLY - NO EXPRESS LOGIC REQUIRED)
@@ -40,6 +41,6 @@ Notes
 - Regular users can only modify (not delete) their own created entries
 - Admin users can modify (and delete) all entries
 - Admin users can modify (and delete) users
-- Report left for later - 21/01
+- Report CRUD left for later - 21/01
 
 */
