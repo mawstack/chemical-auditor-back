@@ -50,6 +50,14 @@ const EntrySchema = new Schema({
     type: String,
     required: true
   },
+  speed: {
+    type: Number,
+    required: true
+  },
+  deg: {
+    type: Number,
+    required: true
+  }
   notes: {
     type: String,
     required: true

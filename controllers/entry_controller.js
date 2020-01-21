@@ -1,4 +1,5 @@
 const entries = [];
+const weatherData = require("./../services/api_call");
 
 function index(req, res) {
   return res.json(entries);
@@ -9,20 +10,44 @@ function newEntry(req, res) {
 }
 
 function create(req, res) {
-  let { date, 
-    location, 
-    chemical_name, 
-    whd_ehd,
-    rate_of_application,
-    windspeed
-} = req.body;
 
-  let entry = { 
-    date,location, 
-    chemical_name, 
-    whd_ehd, 
-    rate_of_application,
-    windspeed };
+  const apiData = await weatherCall();
+
+  let {
+    startTime,
+    finishTime,
+    currentLat,
+    currentLong,
+    cropRow,
+    chemicalUsed,
+    WHP,
+    EHD,
+    rateApplied,
+    quantityApplied,
+    image,
+    equipmentMethodUsed,
+    notes,
+  } = req.body;
+
+  let { speed, deg } = apiData.wind
+
+  let entry = {
+    startTime,
+    finishTime,
+    currentLat,
+    currentLong,
+    cropRow,
+    chemicalUsed,
+    WHP,
+    EHD,
+    rateApplied,
+    quantityApplied,
+    image,
+    equipmentMethodUsed,
+    notes,
+    speed,
+    deg
+  };
   entries.push(entry);
   return res.render("success");
 }
