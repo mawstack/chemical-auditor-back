@@ -35,7 +35,6 @@ const create = async (req, res, next) => {
 // }
 
 // //PUT /users/:id
-
 const update = async (req, res, next) => {
     const { email, password, username, isAdmin } = req.body;
 
@@ -50,8 +49,9 @@ const update = async (req, res, next) => {
 }
 
 // //DELETE users/:id
-// async function deleteUser (req, res) {
-//     //delete the specified user from the DB then redirect to dashboard
+
+// const deleteUser = async (req, res) => {
+//     // Delete the specified user from the DB, then redirect to dashboard.
 // }
 
 const deleteUser = async (req, res, next) => {
