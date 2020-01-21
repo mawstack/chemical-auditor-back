@@ -6,7 +6,7 @@ const weatherCall = async () => {
     ` api.openweathermap.org/data/2.5/weather?lat=-24.848560&lon=152.300955&APPID=${weatherKey}`
   );
   return openWeather;
-}
+};
 
 /* 
   Set google map coords

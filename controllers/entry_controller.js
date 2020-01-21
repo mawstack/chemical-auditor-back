@@ -11,7 +11,9 @@ const newEntry = (req, res) => {
 
 const create = async (req, res) => {
   const apiData = await weatherCall();
-
+  //
+  // API DATA ABOVE MUST BE MOVED TO THE NEWENTRY PAGE
+  //
   const {
     startTime,
     finishTime,

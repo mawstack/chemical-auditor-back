@@ -16,8 +16,8 @@ module.exports = router;
 - RU Reports(?)
 
 Users
-GET /register - New user (view)
-POST /register - Create user
+GET /users/register - New user (view) (REACT ONLY - NO EXPRESS LOGIC REQUIRED)
+POST /users/register - Create user
 GET /users/:id/edit - Edit user (view)
 PUT /users/:id - Update user
 DELETE /users/:id - Destroy user
@@ -32,7 +32,7 @@ GET /entries/:id/edit - Edit entry (view)
 PUT+PATCH /entries/:id - Update entry
 
 Pages (Other Routes)
-GET /login - Login (view)
+GET /login - Login (view) (REACT ONLY - NO EXPRESS LOGIC REQUIRED)
 GET / - dashboard (view)
 
 Notes
