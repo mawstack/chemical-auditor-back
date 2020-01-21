@@ -1,19 +1,18 @@
 const entries = [];
 const weatherData = require("./../services/api_call");
 
-function index(req, res) {
+const index = (req, res) => {
   return res.json(entries);
-}
+};
 
-function newEntry(req, res) {
+const newEntry = (req, res) => {
   return res.render("contact");
-}
+};
 
-function create(req, res) {
-
+const create = async (req, res) => {
   const apiData = await weatherCall();
 
-  let {
+  const {
     startTime,
     finishTime,
     currentLat,
@@ -26,12 +25,12 @@ function create(req, res) {
     quantityApplied,
     image,
     equipmentMethodUsed,
-    notes,
+    notes
   } = req.body;
 
-  let { speed, deg } = apiData.wind
+  const { speed, deg } = apiData.wind;
 
-  let entry = {
+  const entry = {
     startTime,
     finishTime,
     currentLat,
@@ -50,7 +49,7 @@ function create(req, res) {
   };
   entries.push(entry);
   return res.render("success");
-}
+};
 
 module.exports = {
   index,
