@@ -10,8 +10,7 @@ const app = express();
 //mongoose
 mongoose
   .connect(process.env.DB_HOST, {
-    useNewUrlParser: true,
-    newUnifiedTopology: true
+    useNewUrlParser: true
   })
   .then(() => {
     console.log("MongoDB connected");
