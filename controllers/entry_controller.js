@@ -1,16 +1,20 @@
+const EntryModel = require("./../database/entry_model");
 const entries = [];
 const weatherData = require("./../services/api_call");
 
+//DO
 //GET /entries
 const index = (req, res) => {
   return res.json(entries);
 };
 
+//DO
 //GET /entries/new
 const newEntry = (req, res) => {
   return res.render("contact");
 };
 
+//DO
 //POST /entries
 const create = async (req, res) => {
   const apiData = await weatherCall();
@@ -52,25 +56,32 @@ const create = async (req, res) => {
     speed,
     deg
   };
+
   entries.push(entry);
   return res.render("success");
 };
 
-//GET /entries:id
+//DO
+//GET /entries/:id
 const show = async (req, res) => {
-
+  const entryId = req.params._id;
+  const entry = await EntryModel.find(entryId);
+  res.json(entry);
 }
 
-//DELETE /entries:id
+//DO
+//DELETE /entries/:id
 const deleteEntry = async (req, res) => {
 
 }
 
-//GET /entries/id:/edit
+//DO
+//GET /entries/:id/edit
 const edit = async (req, res) => {
 
 }
 
+//DO
 //PUT+PATCH /entries/:id
 const update = async (req, res) => {
 

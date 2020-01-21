@@ -57,7 +57,7 @@ const EntrySchema = new Schema({
   deg: {
     type: Number,
     required: true
-  }
+  },
   notes: {
     type: String,
     required: true
