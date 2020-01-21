@@ -26,13 +26,15 @@ const create = async (req, res, next) => {
 // }
 
 // //PUT /users/:id
-// async function update (req, res) {
-//     //change the specified user in the DB then redirect to dashboard
+// const update = async (req, res) => {
+//     // Change the specified user in the DB, then redirect to dashboard.
 // }
 
+
 // //DELETE users/:id
-// async function deleteUser (req, res) {
-//     //delete the specified user from the DB then redirect to dashboard
+
+// const deleteUser = async (req, res) => {
+//     // Delete the specified user from the DB, then redirect to dashboard.
 // }
 
 module.exports = {
