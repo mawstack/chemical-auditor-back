@@ -5,8 +5,6 @@ const methodOverride = require("method-override");
 
 //general app
 const app = express();
-require("dotenv").config();
-const port = process.env.PORT;
 
 //mongoose
 //need to set 'localhost' area dynamically?
@@ -27,10 +25,6 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 //routes
-const routes = require("./routes");
-app.use(routes);
+app.use(require("./routes"));
 
-//listening for app
-app.listen(port, () => {
-    console.log(`Express server is now running on port ${port}.`);
-})
+module.exports = app;
