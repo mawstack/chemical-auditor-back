@@ -3,14 +3,17 @@ const UserModel = require("./../database/models/user_model");
 //GET /register
 function newUser (req, res) {
     //display the new User React view
+    
+    // example route response - verified working 21/01 2PM
+    // res.json({
+    //     thing: "a"
+    // })
 }
 
 //POST /register
 async function create (req, res) {
     //create user in db using data from form-post request body
     //then redirect to dashboard AND pass token to login
-
-    //!!Add return test for postman - 21/01 1:14PM
 }
 
 //GET /users/:id/edit

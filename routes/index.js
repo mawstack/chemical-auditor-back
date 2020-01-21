@@ -4,7 +4,7 @@ const userRoutes = require("./user_routes");
 
 
 
-app.use("/users", userRoutes);
+router.use("/users", userRoutes);
 module.exports = router;
 
 
