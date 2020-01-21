@@ -2,6 +2,15 @@ const UserModel = require("./../database/models/user_model");
 // CHANGE ALL TO FAT ARROW BOYS
 //GET /register ((JUST IN REACT))
 
+//for development reference only to get params of users
+const index = async (req, res, next) => {
+    
+
+    const users = await UserModel.find();
+
+    res.send(users);
+}
+
 //POST /register
 
 //create user in db using data from form-post request body
@@ -26,10 +35,18 @@ const create = async (req, res, next) => {
 // }
 
 // //PUT /users/:id
-// const update = async (req, res) => {
-//     // Change the specified user in the DB, then redirect to dashboard.
-// }
+const update = async (req, res, next) => {
+    const { email, password, username, isAdmin } = req.body;
 
+    const user = await UserModel.update({
+        email,
+        password,
+        username,
+        isAdmin
+    });
+
+    res.send("Edit successful");
+}
 
 // //DELETE users/:id
 
@@ -37,10 +54,25 @@ const create = async (req, res, next) => {
 //     // Delete the specified user from the DB, then redirect to dashboard.
 // }
 
+const deleteUser = async (req, res, next) => {
+    const { email, password, username, isAdmin } = req.body;
+
+    const user = await UserModel.delete({
+        email,
+        password,
+        username,
+        isAdmin
+    });
+
+    res.send("User removed successfully");
+
+}
+
 module.exports = {
     // newUser,
-    create
+    create,
     // edit,
-    // update,
-    // deleteUser
+    update,
+    deleteUser,
+    index
 }
