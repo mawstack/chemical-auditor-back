@@ -2,10 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
+const cors = require("cors");
 require("dotenv").config();
-
-//general app
 const app = express();
+
+//cors - currently accepting requests from ANY origin
+app.use(cors());
 
 //mongoose
 mongoose
