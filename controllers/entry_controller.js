@@ -1,28 +1,12 @@
 const EntryModel = require("./../database/models/entry_model");
 const weatherCall = require("./../services/api_call");
 
-//COMPLETE/TESTED
-//GET /entries
-const index = async (req, res) => {
-  const entries = await EntryModel.find();
-  res.json(entries);
-};
-
-//NOT WORKING
 //GET /entries/new
 const newEntry = async (req, res) => {
-  await weatherCall()
-  .then(data => {
-    console.log("call successful");
-    res.send(data);
-  })
-  .catch(err => {
-    console.log("call fail");
-    res.send(err);
-  });
+  const data = await weatherCall();
+  res.json(data);
 };
 
-//COMPLETE/TESTED
 //POST /entries
 const create = async (req, res) => {
   const {
@@ -41,7 +25,7 @@ const create = async (req, res) => {
     notes
   } = req.body;
 
-  await EntryModel.create({
+await EntryModel.create({
     startTime,
     finishTime,
     currentLat,
@@ -62,12 +46,11 @@ const create = async (req, res) => {
   .catch(err => res.send(err));
 };
 
-//COMPLETED/TESTED
 //GET /entries/:id
 const show = async (req, res) => {
   const entry = await EntryModel.findById(req.params.id);
   res.json(entry);
-}
+};
 
 //COMPLETED/TESTED
 //DELETE /entries/:id
