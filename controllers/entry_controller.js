@@ -1,6 +1,11 @@
 const EntryModel = require("./../database/models/entry_model");
 const weatherCall = require("./../services/api_call");
 
+const index = async (req, res) => {
+  const entries = await EntryModel.find();
+  res.json(entries);
+}
+
 //GET /entries/new
 const newEntry = async (req, res) => {
   const data = await weatherCall();
