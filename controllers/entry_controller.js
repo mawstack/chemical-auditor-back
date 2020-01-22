@@ -1,15 +1,15 @@
 const EntryModel = require("./../database/models/entry_model");
 const weatherCall = require("./../services/api_call");
 
-//DO
-//GET /entries - COMPLETE (TESTED)
+//COMPLETE/TESTED
+//GET /entries
 const index = async (req, res) => {
   const entries = await EntryModel.find();
   res.json(entries);
 };
 
-//DO
-//GET /entries/new - NOT WORKING
+//NOT WORKING
+//GET /entries/new
 const newEntry = async (req, res) => {
   await weatherCall()
   .then(data => {
@@ -22,8 +22,8 @@ const newEntry = async (req, res) => {
   });
 };
 
-//DO
-//POST /entries - COMPLETE (TESTED)
+//COMPLETE/TESTED
+//POST /entries
 const create = async (req, res) => {
   const {
     startTime,
@@ -59,22 +59,22 @@ const create = async (req, res) => {
     //speed
     //deg
   })
-  .then(() => res.send("success"))
-  .catch((err) => console.log(err));
+  .then(() => res.send("Entry creation success"))
+  .catch(err => res.send(err));
 };
 
-//DO
+//COMPLETED/TESTED
 //GET /entries/:id
 const show = async (req, res) => {
-  const entryId = req.params._id;
-  const entry = await EntryModel.find(entryId);
+  const entry = await EntryModel.findById(req.params.id);
   res.json(entry);
 }
 
-//DO
+//COMPLETED/TESTED
 //DELETE /entries/:id
 const deleteEntry = async (req, res) => {
-
+  await EntryModel.findByIdAndRemove(req.params.id);
+  res.send("Entry removal successful");
 }
 
 //DO
