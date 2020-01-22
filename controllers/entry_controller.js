@@ -1,17 +1,18 @@
-const EntryModel = require("./../database/entry_model");
+const EntryModel = require("./../database/models/entry_model");
 const entries = [];
-const weatherData = require("./../services/api_call");
+const weatherCall = require("./../services/api_call");
 
 //DO
-//GET /entries
+//GET /entries - COMPLETE
 const index = (req, res) => {
   return res.json(entries);
 };
 
 //DO
-//GET /entries/new
-const newEntry = (req, res) => {
-  return res.render("contact");
+//GET /entries/new - 
+const newEntry = async (req, res) => {
+  const apiData = await weatherCall();
+  res.send(apiData);
 };
 
 //DO
