@@ -1,4 +1,4 @@
-const EntryModel = require("./../database/entry_model");
+const EntryModel = require("./../database/models/entry_model");
 const entries = [];
 const weatherData = require("./../services/api_call");
 
