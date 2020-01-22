@@ -1,27 +1,19 @@
 const EntryModel = require("./../database/models/entry_model");
-const entries = [];
 const weatherCall = require("./../services/api_call");
-const axios = require("axios");
-//DO
+
 //GET /entries
 const index = (req, res) => {
-  return res.json(entries);
+  res.json(entries);
 };
 
-//DO
 //GET /entries/new
 const newEntry = async (req, res) => {
   const data = await weatherCall();
-  res.send(data);
+  res.json(data);
 };
 
-//DO
 //POST /entries
 const create = async (req, res) => {
-  const apiData = await weatherCall();
-  //
-  // API DATA ABOVE MUST BE MOVED TO THE NEWENTRY PAGE
-  //
   const {
     startTime,
     finishTime,
@@ -38,8 +30,6 @@ const create = async (req, res) => {
     notes
   } = req.body;
 
-  const { speed, deg } = apiData.wind;
-
   const entry = {
     startTime,
     finishTime,
@@ -53,40 +43,30 @@ const create = async (req, res) => {
     quantityApplied,
     image,
     equipmentMethodUsed,
-    notes,
-    speed,
-    deg
+    notes
+    // speed,
+    // deg
   };
-
-  entries.push(entry);
+  // Replace this with mongoDB
+  // entries.push(entry);
   return res.render("success");
 };
 
-//DO
 //GET /entries/:id
 const show = async (req, res) => {
   const entryId = req.params._id;
   const entry = await EntryModel.find(entryId);
   res.json(entry);
-}
+};
 
-//DO
 //DELETE /entries/:id
-const deleteEntry = async (req, res) => {
+const deleteEntry = async (req, res) => {};
 
-}
-
-//DO
 //GET /entries/:id/edit
-const edit = async (req, res) => {
+const edit = async (req, res) => {};
 
-}
-
-//DO
 //PUT+PATCH /entries/:id
-const update = async (req, res) => {
-
-}
+const update = async (req, res) => {};
 
 module.exports = {
   index,
