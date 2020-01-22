@@ -1,27 +1,30 @@
 const EntryModel = require("./../database/models/entry_model");
-const entries = [];
 const weatherCall = require("./../services/api_call");
 
 //DO
-//GET /entries - COMPLETE
-const index = (req, res) => {
-  return res.json(entries);
+//GET /entries - COMPLETE (TESTED)
+const index = async (req, res) => {
+  const entries = await EntryModel.find();
+  res.json(entries);
 };
 
 //DO
-//GET /entries/new - 
+//GET /entries/new - NOT WORKING
 const newEntry = async (req, res) => {
-  const apiData = await weatherCall();
-  res.send(apiData);
+  await weatherCall()
+  .then(data => {
+    console.log("call successful");
+    res.send(data);
+  })
+  .catch(err => {
+    console.log("call fail");
+    res.send(err);
+  });
 };
 
 //DO
-//POST /entries
+//POST /entries - COMPLETE (TESTED)
 const create = async (req, res) => {
-  const apiData = await weatherCall();
-  //
-  // API DATA ABOVE MUST BE MOVED TO THE NEWENTRY PAGE
-  //
   const {
     startTime,
     finishTime,
@@ -38,9 +41,7 @@ const create = async (req, res) => {
     notes
   } = req.body;
 
-  const { speed, deg } = apiData.wind;
-
-  const entry = {
+  await EntryModel.create({
     startTime,
     finishTime,
     currentLat,
@@ -53,13 +54,13 @@ const create = async (req, res) => {
     quantityApplied,
     image,
     equipmentMethodUsed,
-    notes,
-    speed,
-    deg
-  };
-
-  entries.push(entry);
-  return res.render("success");
+    notes
+    //speed and deg temporarily changed to not-required as API call sorted - 22/1 12PM
+    //speed
+    //deg
+  })
+  .then(() => res.send("success"))
+  .catch((err) => console.log(err));
 };
 
 //DO
