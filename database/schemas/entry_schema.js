@@ -24,7 +24,8 @@ const EntrySchema = new Schema({
   },
   chemicalUsed: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   WHP: {
     type: Number,
@@ -32,7 +33,8 @@ const EntrySchema = new Schema({
   },
   EHD: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   rateApplied: {
     type: Number,
@@ -44,11 +46,13 @@ const EntrySchema = new Schema({
   },
   image: {
     type: String,
-    required: false
+    required: false,
+    trim: true
   },
   equipmentMethodUsed: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   speed: {
     type: Number,
@@ -60,7 +64,8 @@ const EntrySchema = new Schema({
   },
   notes: {
     type: String,
-    required: false
+    required: false,
+    trim: true
   }
 });
 
