@@ -4,15 +4,19 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   email: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   password: {
     type: String,
-    required: true
+    required: true,
+    trim: true,
+    bcrypt: true
   },
   username: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   isAdmin: {
     type: Boolean,
@@ -20,4 +24,5 @@ const UserSchema = new Schema({
   }
 });
 
+UserSchema.plugin(require("mongoose-bcrypt"));
 module.exports = UserSchema;
