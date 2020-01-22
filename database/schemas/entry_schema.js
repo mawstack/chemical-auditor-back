@@ -52,15 +52,15 @@ const EntrySchema = new Schema({
   },
   speed: {
     type: Number,
-    required: false/*true*/
+    required: true
   },
   deg: {
     type: Number,
-    required: false/*true*/
+    required: true
   },
   notes: {
     type: String,
-    required: true
+    required: false
   }
 });
 

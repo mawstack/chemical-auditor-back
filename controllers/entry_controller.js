@@ -54,10 +54,9 @@ const create = async (req, res) => {
     quantityApplied,
     image,
     equipmentMethodUsed,
-    notes
-    //speed and deg temporarily changed to not-required as API call sorted - 22/1 12PM
-    //speed
-    //deg
+    notes,
+    speed,
+    deg
   })
   .then(() => res.send("Entry creation success"))
   .catch(err => res.send(err));
@@ -77,16 +76,54 @@ const deleteEntry = async (req, res) => {
   res.send("Entry removal successful");
 }
 
-//DO
+//COMPLETED/TESTED
 //GET /entries/:id/edit
 const edit = async (req, res) => {
-
+  const entry = await EntryModel.findById(req.params.id);
+  res.json(entry);
 }
 
-//DO
+//COMPLETED/TESTED BUT NO DATA = DEFAULT TO NULL (INSTEAD OF PREVIOUS VALUE)
+//FINE AS LONG AS VALUES PREFILLED VIEW-SIDE
 //PUT+PATCH /entries/:id
 const update = async (req, res) => {
+  const {
+    startTime,
+    finishTime,
+    currentLat,
+    currentLong,
+    cropRow,
+    chemicalUsed,
+    WHP,
+    EHD,
+    rateApplied,
+    quantityApplied,
+    image,
+    equipmentMethodUsed,
+    notes,
+    speed,
+    deg
+  } = req.body;
 
+  await EntryModel.findByIdAndUpdate({ _id: req.params.id }, {
+    startTime,
+    finishTime,
+    currentLat,
+    currentLong,
+    cropRow,
+    chemicalUsed,
+    WHP,
+    EHD,
+    rateApplied,
+    quantityApplied,
+    image,
+    equipmentMethodUsed,
+    notes,
+    speed,
+    deg
+  });
+
+  res.send("Entry edit successful");
 }
 
 module.exports = {
