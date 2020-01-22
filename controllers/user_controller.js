@@ -37,14 +37,10 @@ const create = async (req, res, next) => {
 // //PUT /users/:id
 
 const update = async (req, res, next) => {
-    const { email, password, username, isAdmin } = req.body;
+    let { _id } = req.params;
+    let { email, password, username, isAdmin} =req.body
 
-    const user = await UserModel.update({
-        email,
-        password,
-        username,
-        isAdmin
-    });
+    await UserModel.findByIdAndUpdate(_id, {email, password, username, isAdmin});
 
     res.send("Edit successful");
 }
@@ -55,14 +51,10 @@ const update = async (req, res, next) => {
 // }
 
 const deleteUser = async (req, res, next) => {
-    const { email, password, username, isAdmin } = req.body;
+    let { _id } = req.params;
 
-    const user = await UserModel.delete({
-        email,
-        password,
-        username,
-        isAdmin
-    });
+        await UserModel.findByIdAndRemove(_id);
+    
 
     res.send("User removed successfully");
 
