@@ -27,9 +27,8 @@ const edit = async (req, res) => {
 
 // PUT /users/:id
 const update = async (req, res, next) => {
-  let { _id } = req.params;
   let { email, password, username, isAdmin } = req.body;
-  await UserModel.findByIdAndUpdate(_id, {
+  await UserModel.findByIdAndUpdate(req.params.id, {
     email,
     password,
     username,
@@ -40,8 +39,7 @@ const update = async (req, res, next) => {
 
 // DELETE users/:id
 const deleteUser = async (req, res, next) => {
-  let { _id } = req.params;
-  await UserModel.findByIdAndRemove(_id);
+  await UserModel.findByIdAndRemove(req.params.id);
   res.send("User removed successfully");
 };
 

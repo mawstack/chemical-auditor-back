@@ -11,12 +11,14 @@ module.exports = router;
 - CUD Users
 - CRUD Entries
 - RU Reports(?)
+
 Users
 GET /users/register - New user (view) (REACT ONLY - NO EXPRESS LOGIC REQUIRED)
 POST /users/register - Create user
 GET /users/:id/edit - Edit user (view)
 PUT /users/:id - Update user
 DELETE /users/:id - Destroy user
+
 Entries
 GET /entries - Index of all entries (view)
 GET /entries/new - New entry (view)
@@ -29,6 +31,7 @@ PUT /entries/:id - Update entry
 Pages (Other Routes)
 GET /login - Login (view) (REACT ONLY - NO EXPRESS LOGIC REQUIRED)
 GET / - dashboard (view)
+
 Notes
 - All users can see all entries
 - Regular users can only modify (not delete) their own created entries
