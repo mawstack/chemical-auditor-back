@@ -13,22 +13,18 @@ const index = async (req, res, next) => {
 // POST /register
 const create = async (req, res, next) => {
   const { email, password, username, isAdmin } = req.body;
-  //must change mongoose request post-action to non-promise logic?
   await UserModel.create({
     email,
     password,
     username,
     isAdmin
   })
-  .then(() => {
-    res.send("hit");
-    //hitting "hit" but not below - problem with promise structure or jwt section???
-    //line 23 error - UnhandledPromiseRejectionWarning: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
-    const token = jwt.sign({ subject: req.user._id }, process.env.JWT_KEY);
+  .then((user) => {
+    const token = jwt.sign({ subject: user._id }, process.env.JWT_KEY);
     res.cookie("jwtToken", token);
     res.send("Register Successful, logging in...");
   })
-  .catch((err) => res.send(err));
+  .catch((err) => console.log(err));
 };
 
 // GET /users/:id/edit
