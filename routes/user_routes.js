@@ -22,6 +22,13 @@ router.post("/register", celebrate({
 }), UserController.create);
 router.delete("/:id", UserController.deleteUser);
 router.get("/:id/edit", UserController.edit);
-router.put("/:id", UserController.update);
+router.put("/:id", celebrate({
+    [Segments.BODY]: {
+        email: Joi.string().required(),
+        password: Joi.string().required(),
+        username: Joi.string().required(),
+        isAdmin: Joi.boolean().required()
+    }
+}), UserController.update);
 
 module.exports = router;
