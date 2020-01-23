@@ -20,6 +20,8 @@ const create = async (req, res, next) => {
     isAdmin
   })
   .then(() => {
+    res.send("hit");
+    //line 23 error - UnhandledPromiseRejectionWarning: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
     const token = jwt.sign({ subject: req.user._id }, process.env.JWT_KEY);
     res.cookie("jwtToken", token);
     res.send("Register Successful, logging in...");
