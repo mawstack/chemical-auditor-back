@@ -1,10 +1,15 @@
 require("dotenv").config();
+const passport = require("./config/passport");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const cors = require("cors");
 const app = express();
+
+//app
+app.use(passport.initialize());
+app.use(passport.session());
 
 //cors - currently accepting requests from ANY origin
 app.use(cors());

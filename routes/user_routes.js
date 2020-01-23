@@ -2,12 +2,16 @@ const express = require("express");
 const router = express.Router();
 const UserController = require("./../controllers/user_controller");
 const { celebrate, Joi, errors, Segments } = require("celebrate");
+const passport = require("passport");
+//passport imported into each local_routes file and applied to designated routes within
+//router.get("/name", passport.authenticate("strategyName, {session: false}"), ControllerName.routeFuction)
 
-// React only
-// router.get("/register", UserController.newUser);
+// GET /register for React only
 
 // Index for id reference only - not to be in final version
 router.get("/", UserController.index);
+
+// Actual final version express routes;
 router.post("/register", celebrate({
     [Segments.BODY]: {
         email: Joi.string().required(),

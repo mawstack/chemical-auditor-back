@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const EntryController = require("./../controllers/entry_controller");
 const { celebrate, Joi, Segments } = require("celebrate");
+const passport = require("passport");
+//router.get("/name", passport.authenticate("strategyName, {session: false}"), ControllerName.routeFuction)
 
 router.get("/", EntryController.index);
 router.get("/new", EntryController.newEntry);
