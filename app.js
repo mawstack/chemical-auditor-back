@@ -1,5 +1,6 @@
 require("dotenv").config();
-const passport = require("./config/passport");
+const passport = require("passport");
+require("./config/passport");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");

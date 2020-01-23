@@ -55,7 +55,7 @@ passport.use(
 passport.use(
     new JwtStrategy(
         {
-            getJwtTokenFromReq: (req) => {
+            jwtFromRequest: (req) => {
                 let token = null;
                 //previous version - differences?
                 /*
@@ -70,7 +70,7 @@ passport.use(
                 }
                 return token;
             },
-            jwt_key: process.env.JWT_KEY
+            secretOrKey: process.env.JWT_KEY
         },
         async(jwtPayload, done) => {
             const user = await UserModel.findById(jwtPayload.subject)
