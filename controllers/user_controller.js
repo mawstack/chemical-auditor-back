@@ -1,6 +1,9 @@
 const UserModel = require("./../database/models/user_model");
+const jwt = require("jsonwebtoken");
 
-// Index for id reference only - not to be in final version
+// GET /register for React only
+
+// Index for id reference only - NOT to be in final version
 // GET /users
 const index = async (req, res, next) => {
   const users = await UserModel.find();
@@ -10,13 +13,18 @@ const index = async (req, res, next) => {
 // POST /register
 const create = async (req, res, next) => {
   const { email, password, username, isAdmin } = req.body;
-  const user = await UserModel.create({
+  await UserModel.create({
     email,
     password,
     username,
     isAdmin
-  });
-  res.send("Creation worked");
+  })
+  .then(() => {
+    const token = jwt.sign({ subject: req.user._id }, process.env.JWT_KEY);
+    res.cookie("jwtToken", token);
+    res.send("Register Successful, logging in...");
+  })
+  .catch((err) => res.send(err));
 };
 
 // GET /users/:id/edit
@@ -44,8 +52,6 @@ const deleteUser = async (req, res, next) => {
 };
 
 module.exports = {
-  // newUser is React only
-  // newUser,
   create,
   edit,
   update,

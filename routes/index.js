@@ -2,9 +2,13 @@ const express = require("express");
 const router = express.Router();
 const userRoutes = require("./user_routes");
 const entryRoutes = require("./entry_routes");
+const authenticationRoutes = require("./authentication_routes");
+const pageRoutes = require("./page_routes");
 
 router.use("/users", userRoutes);
 router.use("/entries", entryRoutes);
+router.use("/", authenticationRoutes);
+router.use("/", pageRoutes);
 module.exports = router;
 
 /* Chemical Auditor API - Routes reference
