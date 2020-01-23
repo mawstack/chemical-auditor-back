@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const loginCreate = async (req, res) => {
   const token = jwt.sign({ sub: req.user._id }, process.env.JWT_SECRET);
-  res.cookie("jwt", token);
+  res.session.jwt = token;
   res.send("Login success");
 }
 

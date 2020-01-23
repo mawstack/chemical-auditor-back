@@ -6,6 +6,9 @@ const methodOverride = require("method-override");
 const cors = require("cors");
 const app = express();
 
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
 //cors - currently accepting requests from ANY origin
 app.use(cors());
 
@@ -34,6 +37,10 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+
+require("./config/passport");
+app.use(passport.initialize());
+app.use(passport.session());
 
 //routes
 app.use(require("./routes"));

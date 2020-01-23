@@ -3,6 +3,7 @@ const router = express.Router();
 const userRoutes = require("./user_routes");
 const entryRoutes = require("./entry_routes");
 
+router.get("/dashboard", passport.authenticate("jwt", { session: false }), EntryController.dashboard);
 router.use("/users", userRoutes);
 router.use("/entries", entryRoutes);
 module.exports = router;
