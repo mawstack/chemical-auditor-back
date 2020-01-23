@@ -6,12 +6,11 @@ const passport = require("passport");
 
 // GET /login for React only
 
-router.post(
-    "/login",
+router.post("/login",
     celebrate({
         [Segments.BODY]: {
             email: Joi.string().required(),
-            password: Joi.string().required
+            password: Joi.string().required()
         }
     }),
     passport.authenticate("local", {
