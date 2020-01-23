@@ -28,8 +28,12 @@ DELETE /entries/:id - Destroy entry
 GET /entries/:id/edit - Edit entry (view)
 PUT /entries/:id - Update entry
 
-Pages (Other Routes)
+Authentication
 GET /login - Login (view) (REACT ONLY - NO EXPRESS LOGIC REQUIRED)
+POST /login - Login
+POST /logout - Logout
+
+Pages
 GET / - dashboard (view)
 
 Notes

@@ -73,7 +73,7 @@ passport.use(
             jwt_key: process.env.JWT_KEY
         },
         async(jwtPayload, done) => {
-            const user = await UserModel.findById(jwtPayload.sub)
+            const user = await UserModel.findById(jwtPayload.subject)
                 .catch(done);
             if(!user) {
                 return done(null, false);
