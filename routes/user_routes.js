@@ -1,6 +1,8 @@
 const express = require("express");
+const passport = require("./../config/passport");
 const router = express.Router();
 const UserController = require("./../controllers/user_controller");
+const AuthenticationController = require("./../controllers/authentication_controller");
 const { celebrate, Joi, errors, Segments } = require("celebrate");
 
 // React only
@@ -16,7 +18,7 @@ router.post("/register", celebrate({
         username: Joi.string().required(),
         isAdmin: Joi.boolean().required()
     }
-}), UserController.create);
+}), UserController.registerCreate);
 
 router.delete("/:id", UserController.deleteUser);
 router.get("/:id/edit", UserController.edit);

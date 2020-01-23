@@ -1,4 +1,5 @@
 require("dotenv").config();
+const passport = require("./config/passport");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -38,7 +39,6 @@ app.use(
 );
 app.use(bodyParser.json());
 
-require("./config/passport");
 app.use(passport.initialize());
 app.use(passport.session());
 

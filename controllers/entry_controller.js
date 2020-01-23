@@ -117,6 +117,7 @@ const update = async (req, res) => {
 }
 
 module.exports = {
+  dashboard,
   index,
   newEntry,
   create,

@@ -1,5 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
 const UserModel = require("./../database/models/user_model");
 
 passport.serializeUser((user, done) => {
@@ -15,7 +16,7 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-//  PassPort Local Strategy
+//  Passport Local Strategy
 passport.use(
   new LocalStrategy(
     {
@@ -33,7 +34,7 @@ passport.use(
   )
 );
 
-//  PassPort JWT Strategy
+//  Passport JWT Strategy
 passport.use(
   new JwtStrategy(
     {
@@ -58,3 +59,5 @@ passport.use(
     }
   )
 );
+
+module.exports = passport;

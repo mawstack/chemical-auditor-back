@@ -14,7 +14,6 @@ const logout = (req, res) => {
 }
 
 module.exports = {
-  registerCreate,
   loginCreate,
   logout
 }

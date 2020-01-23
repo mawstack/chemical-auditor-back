@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const userRoutes = require("./user_routes");
 const entryRoutes = require("./entry_routes");
+const passport = require("./../config/passport");
+const EntryController = require("./../controllers/entry_controller");
 
 router.get("/dashboard", passport.authenticate("jwt", { session: false }), EntryController.dashboard);
 router.use("/users", userRoutes);
