@@ -1,7 +1,7 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const UserModel = require("../database/models/user_model");
-const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
+const { Strategy: JwtStrategy } = require("passport-jwt");
 
 
 //Local Strategy for UserModel email + password login authentication
@@ -33,6 +33,7 @@ passport.deserializeUser(async (id, done) => {
 //...finding a matching-email user in the DB + checking password and returning authentication failure/success...
 //...done-chaining with false = failure, done-chaining with retrieved user record = success
 passport.use(
+    "local",
     new LocalStrategy({
         usernameField: "email"
         },
@@ -53,6 +54,7 @@ passport.use(
 //JwtStrategy logic consisting of an object (with a 'get token' method declaration and the jwt key)...
 //...and an async function that retrieves the user matching that of the jwt requests payload subject
 passport.use(
+    "jwt",
     new JwtStrategy(
         {
             jwtFromRequest: (req) => {
@@ -82,3 +84,5 @@ passport.use(
         }
     )
 );
+
+module.exports = passport;

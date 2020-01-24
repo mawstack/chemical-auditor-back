@@ -3,6 +3,7 @@ const weatherCall = require("./../services/api_call");
 
 //GET /entries
 const index = async (req, res) => {
+  console.log(req.user);
   const entries = await EntryModel.find();
   res.json(entries);
 }
@@ -58,20 +59,20 @@ const show = async (req, res) => {
   res.json(entry);
 };
 
-//DELETE /entries/:id
+//DELETE /entries/:id (admin only)
 const deleteEntry = async (req, res) => {
   await EntryModel.findByIdAndRemove(req.params.id);
   res.send("Entry removal successful");
 }
 
-//GET /entries/:id/edit
+//GET /entries/:id/edit (admin only)
 const edit = async (req, res) => {
   const entry = await EntryModel.findById(req.params.id);
   res.json(entry);
 }
 
 //NO DATA = DEFAULT TO NULL (INSTEAD OF PREVIOUS VALUE) > FINE AS LONG AS VALUES PREFILLED VIEW-SIDE
-//PUT /entries/:id
+//PUT /entries/:id (admin only)
 const update = async (req, res) => {
   const {
     startTime,

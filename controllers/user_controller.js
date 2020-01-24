@@ -27,13 +27,13 @@ const create = async (req, res, next) => {
   .catch((err) => console.log(err));
 };
 
-// GET /users/:id/edit
+// GET /users/:id/edit (admin only)
 const edit = async (req, res) => {
   const user = await UserModel.findById(req.params.id);
   res.json(user);
 }
 
-// PUT /users/:id
+// PUT /users/:id (admin only)
 const update = async (req, res, next) => {
   let { email, password, username, isAdmin } = req.body;
   await UserModel.findByIdAndUpdate(req.params.id, {
@@ -45,7 +45,7 @@ const update = async (req, res, next) => {
   res.send("Edit successful");
 };
 
-// DELETE users/:id
+// DELETE users/:id (admin only)
 const deleteUser = async (req, res, next) => {
   await UserModel.findByIdAndRemove(req.params.id);
   res.send("User removed successfully");
