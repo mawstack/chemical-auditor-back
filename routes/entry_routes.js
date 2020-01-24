@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const EntryController = require("./../controllers/entry_controller");
 const { celebrate, Joi, Segments } = require("celebrate");
+const { isAdminCheck } = require("./../middleware/is_admin_check");
 
 router.get("/", EntryController.index);
 
@@ -21,7 +22,9 @@ router.post("/", celebrate({
             quantityApplied: Joi.number().required(),
             equipmentMethodUsed: Joi.string().required(),
             speed: Joi.number().required(),
-            deg: Joi.number().required()
+            deg: Joi.number().required(),
+            notes: Joi.string().allow(),
+            image: Joi.string().allow()
         }
     }),
     EntryController.create
@@ -29,9 +32,13 @@ router.post("/", celebrate({
 
 router.get("/:id", EntryController.show);
 
-router.delete("/:id", EntryController.deleteEntry);
+router.delete("/:id",
+    isAdminCheck,
+    EntryController.deleteEntry);
 
-router.get("/:id/edit", EntryController.edit);
+router.get("/:id/edit",
+    isAdminCheck,
+    EntryController.edit);
 
 router.put("/:id", celebrate({
         [Segments.BODY]: {
@@ -47,9 +54,12 @@ router.put("/:id", celebrate({
             quantityApplied: Joi.number().required(),
             equipmentMethodUsed: Joi.string().required(),
             speed: Joi.number().required(),
-            deg: Joi.number().required()
+            deg: Joi.number().required(),
+            notes: Joi.string().allow(),
+            image: Joi.string().allow()
         }
     }),
+    isAdminCheck,
     EntryController.update
 );
 

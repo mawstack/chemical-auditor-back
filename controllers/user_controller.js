@@ -10,7 +10,7 @@ const index = async (req, res, next) => {
   res.send(users);
 };
 
-// POST /register
+// POST /users/register
 const create = async (req, res, next) => {
   const { email, password, username, isAdmin } = req.body;
   await UserModel.create({
