@@ -34,11 +34,13 @@ router.get("/:id", EntryController.show);
 
 router.delete("/:id",
     isAdminCheck,
-    EntryController.deleteEntry);
+    EntryController.deleteEntry
+);
 
 router.get("/:id/edit",
     isAdminCheck,
-    EntryController.edit);
+    EntryController.edit
+);
 
 router.put("/:id", celebrate({
         [Segments.BODY]: {

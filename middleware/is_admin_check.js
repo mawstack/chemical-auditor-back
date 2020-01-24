@@ -7,7 +7,7 @@ const isAdminCheck = async (req, res, next) => {
         console.log("User confirmed as admin - loading controller function");
         next();
     } else {
-        console.log("User not an admin - redirecting to dashboard...");
+        console.log("User is not an admin - redirecting to dashboard...");
         res.redirect("/");
     }
 }

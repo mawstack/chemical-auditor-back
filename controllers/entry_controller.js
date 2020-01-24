@@ -28,7 +28,9 @@ const create = async (req, res) => {
     quantityApplied,
     image,
     equipmentMethodUsed,
-    notes
+    notes,
+    speed,
+    deg
   } = req.body;
 
 await EntryModel.create({
