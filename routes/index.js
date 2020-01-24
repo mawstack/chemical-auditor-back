@@ -9,18 +9,12 @@ const passport = require("passport");
 // Passport JWT strategy (logged-in check) applied in user_routes.js directly, as it does not apply to the /register route
 router.use("/users", userRoutes);
 
-// JWT entry test
-// With failureRedirect - redirect success ('Could not get any response')
-// Without failureRedirect - passport-jwt default 'Unauthorized' error
-// NO JWT - successful display of entries
 router.use("/entries", passport.authenticate("jwt", {
         failureRedirect: "/users/register",
         session: false
     }),
     entryRoutes
 );
-// NO JWT entry test
-// router.use("/entries", entryRoutes);
 
 // Passport JWT strategy (logged-in check) does not apply to login/logout of authenticationRoutes
 router.use("/", authenticationRoutes);
