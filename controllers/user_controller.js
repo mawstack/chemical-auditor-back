@@ -1,34 +1,39 @@
 const UserModel = require("./../database/models/user_model");
 const jwt = require("jsonwebtoken");
 
-// Index for id reference only - not to be in final version
+// GET /register for React only
+
+// Index for id reference only - NOT to be in final version
 // GET /users
 const index = async (req, res, next) => {
   const users = await UserModel.find();
   res.send(users);
 };
 
-// POST /register
-const registerCreate = async (req, res, next) => {
+// POST /users/register
+const create = async (req, res, next) => {
   const { email, password, username, isAdmin } = req.body;
-  const user = await UserModel.create({ email, password, username, isAdmin });
-
-  req.login(user, error => {
-    if (error) {
-      return next(error);
-    }
-    // Once react is running, we may be able to remove redirect.
-    res.send("Creation worked");
+  await UserModel.create({
+    email,
+    password,
+    username,
+    isAdmin
   })
-}
+  .then((user) => {
+    const token = jwt.sign({ subject: user._id }, process.env.JWT_KEY);
+    res.cookie("jwtToken", token);
+    res.send("Register Successful, logging in...");
+  })
+  .catch((err) => console.log(err));
+};
 
-// GET /users/:id/edit
+// GET /users/:id/edit (admin only)
 const edit = async (req, res) => {
   const user = await UserModel.findById(req.params.id);
   res.json(user);
 }
 
-// PUT /users/:id
+// PUT /users/:id (admin only)
 const update = async (req, res, next) => {
   let { email, password, username, isAdmin } = req.body;
   await UserModel.findByIdAndUpdate(req.params.id, {
@@ -40,16 +45,14 @@ const update = async (req, res, next) => {
   res.send("Edit successful");
 };
 
-// DELETE users/:id
+// DELETE users/:id (admin only)
 const deleteUser = async (req, res, next) => {
   await UserModel.findByIdAndRemove(req.params.id);
   res.send("User removed successfully");
 };
 
 module.exports = {
-  // newUser is React only
-  // newUser,
-  registerCreate,
+  create,
   edit,
   update,
   deleteUser,
