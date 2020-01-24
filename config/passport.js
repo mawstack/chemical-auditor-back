@@ -64,6 +64,7 @@ passport.use(new JwtStrategy({
             return done(null, user);
         }
     )
+
 );
 
 module.exports = passport;

@@ -41,6 +41,9 @@ app.use(
 );
 app.use(bodyParser.json());
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 //routes
 app.use(require("./routes"));
 
