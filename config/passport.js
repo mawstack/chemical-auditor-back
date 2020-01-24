@@ -1,7 +1,7 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const UserModel = require("../database/models/user_model");
-const { Strategy: JwtStrategy } = require("passport-jwt");
+const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
 
 
 //Local Strategy for UserModel email + password login authentication
@@ -32,10 +32,8 @@ passport.deserializeUser(async (id, done) => {
 //async function declares the actual local strategy logic, here - receiving an 'name' (email) and password...
 //...finding a matching-email user in the DB + checking password and returning authentication failure/success...
 //...done-chaining with false = failure, done-chaining with retrieved user record = success
-passport.use(
-    "local",
-    new LocalStrategy({
-        usernameField: "email"
+passport.use(new LocalStrategy({
+            usernameField: "email"
         },
         async (email, password, done) => {
             const user = await UserModel.findOne({ email })
@@ -53,30 +51,14 @@ passport.use(
 //JWT Strategy for authentication token stored in request header (Note: should be encrypted when stored)
 //JwtStrategy logic consisting of an object (with a 'get token' method declaration and the jwt key)...
 //...and an async function that retrieves the user matching that of the jwt requests payload subject
-passport.use(
-    "jwt",
-    new JwtStrategy(
-        {
-            jwtFromRequest: (req) => {
-                let token = null;
-                //previous version - differences?
-                /*
-                if(req.session && req.session.jwt) {
-                    return req.session.jwt;
-                } else {
-                    return null;
-                }
-                */
-                if (req && req.cookies) {
-                    token = req.cookies("jwtToken");
-                }
-                return token;
-            },
+passport.use(new JwtStrategy({
+            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
             secretOrKey: process.env.JWT_KEY
         },
         async(jwtPayload, done) => {
             const user = await UserModel.findById(jwtPayload.subject)
                 .catch(done);
+                console.log(1);
             if(!user) {
                 return done(null, false);
             }

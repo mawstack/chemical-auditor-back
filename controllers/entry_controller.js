@@ -3,7 +3,6 @@ const weatherCall = require("./../services/api_call");
 
 //GET /entries
 const index = async (req, res) => {
-  console.log("Entry controller hit");
   const entries = await EntryModel.find();
   res.json(entries);
 }
