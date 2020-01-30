@@ -30,7 +30,8 @@ const create = async (req, res) => {
     equipmentMethodUsed,
     notes,
     speed,
-    deg
+    deg,
+    date
   } = req.body;
 
 await EntryModel.create({
@@ -48,7 +49,8 @@ await EntryModel.create({
     equipmentMethodUsed,
     notes,
     speed,
-    deg
+    deg,
+    date
   })
   .then(() => res.send("Entry creation success"))
   .catch(err => res.send(err));
@@ -90,7 +92,8 @@ const update = async (req, res) => {
     equipmentMethodUsed,
     notes,
     speed,
-    deg
+    deg,
+    date
   } = req.body;
 
   await EntryModel.findByIdAndUpdate({ _id: req.params.id }, {
@@ -108,7 +111,8 @@ const update = async (req, res) => {
     equipmentMethodUsed,
     notes,
     speed,
-    deg
+    deg,
+    date
   });
 
   res.send("Entry edit successful");

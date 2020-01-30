@@ -66,6 +66,10 @@ const EntrySchema = new Schema({
     type: String,
     required: false,
     trim: true
+  },
+  date: {
+    type: Date,
+    required: true,
   }
 });
 
