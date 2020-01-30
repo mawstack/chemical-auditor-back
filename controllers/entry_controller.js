@@ -1,6 +1,10 @@
 const EntryModel = require("./../database/models/entry_model");
 const weatherCall = require("./../services/api_call");
 
+const dashboard = (req, res) => {
+  res.json(req.session.user);
+  // We need to pass all recent entry data here
+}
 //GET /entries
 const index = async (req, res) => {
   const entries = await EntryModel.find();
@@ -119,6 +123,7 @@ const update = async (req, res) => {
 }
 
 module.exports = {
+  dashboard,
   index,
   newEntry,
   create,

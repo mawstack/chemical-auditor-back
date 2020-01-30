@@ -7,6 +7,9 @@ const pageRoutes = require("./page_routes");
 const passport = require("passport");
 
 // Passport JWT strategy (logged-in check) applied in user_routes.js directly, as it does not apply to the /register route
+
+/* router.get("/dashboard", passport.authenticate("jwt", { session: false }), EntryController.dashboard); */
+/* 24/01 -- Do we need the above route (/dashboard)? It appears to be missing in the updated master, could we please have a look and see if required? */
 router.use("/users", userRoutes);
 
 router.use("/entries", passport.authenticate("jwt", {
