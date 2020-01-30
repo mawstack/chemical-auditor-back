@@ -1,5 +1,4 @@
 const express = require("express");
-const passport = require("./../config/passport");
 const router = express.Router();
 const EntryController = require("./../controllers/entry_controller");
 const { celebrate, Joi, Segments } = require("celebrate");
@@ -25,7 +24,9 @@ router.post("/", celebrate({
             speed: Joi.number().required(),
             deg: Joi.number().required(),
             notes: Joi.string().allow(),
-            image: Joi.string().allow()
+            image: Joi.string().allow(),
+            user: Joi.string().required(),
+            date: Joi.string().required()
         }
     }),
     EntryController.create
@@ -59,7 +60,9 @@ router.put("/:id", celebrate({
             speed: Joi.number().required(),
             deg: Joi.number().required(),
             notes: Joi.string().allow(),
-            image: Joi.string().allow()
+            image: Joi.string().allow(),
+            user: Joi.string().required(),
+            date: Joi.string().required()
         }
     }),
     isAdminCheck,
