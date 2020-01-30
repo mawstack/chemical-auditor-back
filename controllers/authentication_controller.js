@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 // Note: JWT tokens are NOT secure for password storage (easily decrypted) - only to protect against cookie-change session hacking
 // POST /login
 const loginCreate = (req, res) => {
+    console.log("login hit");
     const token = jwt.sign({ subject: req.user._id }, process.env.JWT_KEY, { expiresIn: "1d" });
     res.cookie("jwtToken", token);
     res.send(`${req.user.username} has logged in.`);

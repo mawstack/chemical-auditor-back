@@ -8,8 +8,6 @@ const passport = require("passport");
 
 // Passport JWT strategy (logged-in check) applied in user_routes.js directly, as it does not apply to the /register route
 
-/* router.get("/dashboard", passport.authenticate("jwt", { session: false }), EntryController.dashboard); */
-/* 24/01 -- Do we need the above route (/dashboard)? It appears to be missing in the updated master, could we please have a look and see if required? */
 router.use("/users", userRoutes);
 
 router.use("/entries", passport.authenticate("jwt", {
@@ -21,7 +19,7 @@ router.use("/entries", passport.authenticate("jwt", {
 
 // Passport JWT strategy (logged-in check) does not apply to login/logout of authenticationRoutes
 router.use("/", authenticationRoutes);
-router.use("/", passport.authenticate("jwt", {
+router.use("/home", passport.authenticate("jwt", {
         failureRedirect: "/users/register",
         session: false
     }),
@@ -57,7 +55,7 @@ POST /login - Login
 POST /logout - Logout
 
 Pages
-GET / - dashboard (view) (logged in)
+GET / - /home/dashboard (view) (logged in)
 
 Notes
 - All users can see all entries

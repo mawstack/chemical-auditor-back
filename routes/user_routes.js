@@ -7,8 +7,6 @@ const passport = require("passport");
 const { isAdminCheck } = require("./../middleware/is_admin_check");
 
 // Index for id reference only - not to be in final version
-/* 24/01 -- Can we explain what the above comment is? Just want to ensure we're not missing a route! */
-
 router.get("/", UserController.index);
 
 // Actual final version express routes;
@@ -54,22 +52,5 @@ router.put("/:id",
     }),
     UserController.update
 );
-
-router.post(
-  "/login",
-  celebrate({
-    [Segments.BODY]: {
-      email: Joi.string().required(),
-      password: Joi.string().required()
-    }
-  }),
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-    session: false
-  }),
-  AuthenticationController.loginCreate
-);
-
-router.get("/logout", AuthenticationController.logout);
 
 module.exports = router;

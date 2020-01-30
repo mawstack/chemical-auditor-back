@@ -17,7 +17,8 @@ router.post("/login",
         failureRedirect: "/login",
         session: false
     }),
-    AuthenticationController.loginCreate);
+    AuthenticationController.loginCreate
+);
 router.post("/logout", AuthenticationController.logout);
 
 module.exports = router;
