@@ -13,7 +13,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //cors - currently accepting requests from ANY origin
-app.use(cors());
+//Allowing all origins - 2/2
+app.use(cors({
+  //(Allow all origins)
+  origin: function(origin, callback){
+    return callback(null, true);
+  },
+  credentials: true
+}));
 
 //mongoose
 mongoose
