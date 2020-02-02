@@ -27,11 +27,11 @@ const EntrySchema = new Schema({
     required: true,
     trim: true
   },
-  WHP: {
+  whp: {
     type: Number,
     required: true
   },
-  EHD: {
+  ehd: {
     type: String,
     required: true,
     trim: true

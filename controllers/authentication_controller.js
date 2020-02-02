@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 // POST /login
 const loginCreate = (req, res) => {
     console.log("login hit");
-    const token = jwt.sign({ subject: req.user._id }, process.env.JWT_KEY, { expiresIn: "1d" });
+    const token = jwt.sign({ subject: req.user._id }, process.env.JWT_KEY, { expiresIn: "10d" });
     res.cookie("jwtToken", token);
     res.send(`${req.user.username} has logged in.`);
 }
