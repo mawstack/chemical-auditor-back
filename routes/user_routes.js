@@ -10,47 +10,55 @@ const { isAdminCheck } = require("./../middleware/is_admin_check");
 router.get("/", UserController.index);
 
 // Actual final version express routes;
-router.post("/register", celebrate({
-        [Segments.BODY]: {
-            email: Joi.string().required(),
-            password: Joi.string().required(),
-            username: Joi.string().required(),
-            isAdmin: Joi.boolean().required()
-        }
-    }),
-    UserController.create
+router.post(
+  "/register",
+  celebrate({
+    [Segments.BODY]: {
+      email: Joi.string().required(),
+      password: Joi.string().required(),
+      username: Joi.string().required(),
+      isAdmin: Joi.boolean().required()
+    }
+  }),
+  UserController.create
 );
 
-router.delete("/:id",
-    passport.authenticate("jwt", {
-        failureRedirect: "/users/register", session: false
-    }),
-    isAdminCheck,
-    UserController.deleteUser
+router.delete(
+  "/:id",
+  passport.authenticate("jwt", {
+    // failureRedirect: "/users/register",
+    session: false
+  }),
+  isAdminCheck,
+  UserController.deleteUser
 );
 
-router.get("/:id/edit",
-    passport.authenticate("jwt", {
-        failureRedirect: "/users/register", session: false
-    }),
-    isAdminCheck,
-    UserController.edit
+router.get(
+  "/:id/edit",
+  passport.authenticate("jwt", {
+    // failureRedirect: "/users/register",
+    session: false
+  }),
+  isAdminCheck,
+  UserController.edit
 );
 
-router.put("/:id", 
-    passport.authenticate("jwt", {
-        failureRedirect: "/users/register", session: false
-    }),
-    isAdminCheck,
-    celebrate({
-        [Segments.BODY]: {
-            email: Joi.string().required(),
-            password: Joi.string().required(),
-            username: Joi.string().required(),
-            isAdmin: Joi.boolean().required()
-        }
-    }),
-    UserController.update
+router.put(
+  "/:id",
+  passport.authenticate("jwt", {
+    // failureRedirect: "/users/register",
+    session: false
+  }),
+  isAdminCheck,
+  celebrate({
+    [Segments.BODY]: {
+      email: Joi.string().required(),
+      password: Joi.string().required(),
+      username: Joi.string().required(),
+      isAdmin: Joi.boolean().required()
+    }
+  }),
+  UserController.update
 );
 
 module.exports = router;

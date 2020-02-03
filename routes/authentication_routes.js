@@ -14,7 +14,7 @@ router.post("/login",
         }
     }),
     passport.authenticate("local", {
-        failureRedirect: "/login",
+        // failureRedirect: "/login",
         session: false
     }),
     AuthenticationController.loginCreate
