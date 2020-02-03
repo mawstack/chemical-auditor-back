@@ -8,7 +8,7 @@ const weatherCall = async () => {
     );
     const { speed, deg } = openWeather.data.wind;
     return { speed, deg };
-  } catch(err) {
+  } catch (err) {
     const speed = "Unable to reach server, please try again";
     const deg = null;
     return { speed, deg };

@@ -11,7 +11,7 @@ const passport = require("passport");
 router.use("/users", userRoutes);
 
 router.use("/entries", passport.authenticate("jwt", {
-        failureRedirect: "/users/register",
+        // failureRedirect: "/users/register",
         session: false
     }),
     entryRoutes
@@ -20,7 +20,7 @@ router.use("/entries", passport.authenticate("jwt", {
 // Passport JWT strategy (logged-in check) does not apply to login/logout of authenticationRoutes
 router.use("/", authenticationRoutes);
 router.use("/home", passport.authenticate("jwt", {
-        failureRedirect: "/users/register",
+        // failureRedirect: "/users/register",
         session: false
     }),
     pageRoutes

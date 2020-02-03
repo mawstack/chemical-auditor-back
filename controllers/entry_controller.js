@@ -2,19 +2,30 @@ const EntryModel = require("./../database/models/entry_model");
 const weatherCall = require("./../services/api_call");
 
 const dashboard = (req, res) => {
-  res.json(req.session.user);
-  // We need to pass all recent entry data here
-}
+  try {
+    res.json(req.session.user);
+  } catch (err) {
+    res.send(err);
+  }
+};
 //GET /entries
 const index = async (req, res) => {
-  const entries = await EntryModel.find();
-  res.json(entries);
-}
+  try {
+    const entries = await EntryModel.find();
+    res.json(entries);
+  } catch (err) {
+    res.send(err);
+  }
+};
 
 //GET /entries/new
 const newEntry = async (req, res) => {
-  const data = await weatherCall();
-  res.json(data);
+  try {
+    const data = await weatherCall();
+    res.json(data);
+  } catch (err) {
+    res.send(err);
+  }
 };
 
 //POST /entries
@@ -39,7 +50,7 @@ const create = async (req, res) => {
     user
   } = req.body;
 
-await EntryModel.create({
+  await EntryModel.create({
     startTime,
     finishTime,
     currentLat,
@@ -58,27 +69,39 @@ await EntryModel.create({
     date,
     user
   })
-  .then(() => res.send("Entry creation success"))
-  .catch(err => res.send(err));
+    .then(() => res.send("Entry creation success"))
+    .catch(err => res.send(err));
 };
 
 //GET /entries/:id
 const show = async (req, res) => {
-  const entry = await EntryModel.findById(req.params.id);
-  res.json(entry);
+  try {
+    const entry = await EntryModel.findById(req.params.id);
+    res.json(entry);
+  } catch (err) {
+    res.send(err);
+  }
 };
 
 //DELETE /entries/:id (admin only)
 const deleteEntry = async (req, res) => {
-  await EntryModel.findByIdAndRemove(req.params.id);
-  res.send("Entry removal successful");
-}
+  try {
+    await EntryModel.findByIdAndRemove(req.params.id);
+    res.send("Entry removal successful");
+  } catch (err) {
+    res.send(err);
+  }
+};
 
 //GET /entries/:id/edit (admin only)
 const edit = async (req, res) => {
-  const entry = await EntryModel.findById(req.params.id);
-  res.json(entry);
-}
+  try {
+    const entry = await EntryModel.findById(req.params.id);
+    res.send(entry);
+  } catch (err) {
+    res.send(err);
+  }
+};
 
 //NO DATA = DEFAULT TO NULL (INSTEAD OF PREVIOUS VALUE) > FINE AS LONG AS VALUES PREFILLED VIEW-SIDE
 //PUT /entries/:id (admin only)
@@ -103,28 +126,35 @@ const update = async (req, res) => {
     user
   } = req.body;
 
-  await EntryModel.findByIdAndUpdate({ _id: req.params.id }, {
-    startTime,
-    finishTime,
-    currentLat,
-    currentLong,
-    cropRow,
-    chemicalUsed,
-    whp,
-    ehd,
-    rateApplied,
-    quantityApplied,
-    image,
-    equipmentMethodUsed,
-    notes,
-    speed,
-    deg,
-    date,
-    user
-  });
+  try {
+    await EntryModel.findByIdAndUpdate(
+      { _id: req.params.id },
+      {
+        startTime,
+        finishTime,
+        currentLat,
+        currentLong,
+        cropRow,
+        chemicalUsed,
+        whp,
+        ehd,
+        rateApplied,
+        quantityApplied,
+        image,
+        equipmentMethodUsed,
+        notes,
+        speed,
+        deg,
+        date,
+        user
+      }
+    );
 
-  res.send("Entry edit successful");
-}
+    res.send("Entry edit successful");
+  } catch (err) {
+    res.send(err);
+  }
+};
 
 module.exports = {
   dashboard,
