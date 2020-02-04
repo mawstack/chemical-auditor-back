@@ -36,18 +36,18 @@ module.exports = router;
 Users
 GET /users/register - New user (view) (REACT ONLY - NO EXPRESS LOGIC REQUIRED)
 POST /users/register - Create user
-GET /users/:id/edit - Edit user (view) (admin only) (logged in)
-PUT /users/:id - Update user (admin only) (logged in)
-DELETE /users/:id - Destroy user (admin only) (logged in)
+GET /users/:id/edit - Edit user (view) (logged in)
+PUT /users/:id - Update user (logged in)
+DELETE /users/:id - Destroy user (logged in)
 
 Entries
 GET /entries - Index of all entries (view) (logged in)
 GET /entries/new - New entry (view) (logged in)
 POST /entries - Create entry (logged in)
 GET /entries/:id - Show entry (view) (logged in)
-DELETE /entries/:id - Destroy entry (admin only) (logged in)
-GET /entries/:id/edit - Edit entry (view) (admin only) (logged in)
-PUT /entries/:id - Update entry (admin only) (logged in)
+DELETE /entries/:id - Destroy entry (logged in)
+GET /entries/:id/edit - Edit entry (view) (logged in)
+PUT /entries/:id - Update entry (logged in)
 
 Authentication
 GET /login - Login (view) (REACT ONLY - NO EXPRESS LOGIC REQUIRED)
@@ -56,11 +56,4 @@ POST /logout - Logout
 
 Pages
 GET / - /home/dashboard (view) (logged in)
-
-Notes
-- All users can see all entries
-- Regular users can only modify (not delete) their own created entries
-- Admin users can modify (and delete) all entries
-- Admin users can modify (and delete) users
-- Report CRUD left for later - 21/01
 */

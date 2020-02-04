@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const EntryController = require("./../controllers/entry_controller");
 const { celebrate, Joi, Segments } = require("celebrate");
-const { isAdminCheck } = require("./../middleware/is_admin_check");
 
 router.get("/", EntryController.index);
 
@@ -36,9 +35,9 @@ router.post(
 
 router.get("/:id", EntryController.show);
 
-router.delete("/:id", isAdminCheck, EntryController.deleteEntry);
+router.delete("/:id", EntryController.deleteEntry);
 
-router.get("/:id/edit", isAdminCheck, EntryController.edit);
+router.get("/:id/edit", EntryController.edit);
 
 router.put(
   "/:id",
@@ -63,7 +62,6 @@ router.put(
       date: Joi.string().required()
     }
   }),
-  isAdminCheck,
   EntryController.update
 );
 

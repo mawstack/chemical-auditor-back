@@ -16,12 +16,11 @@ const index = async (req, res, next) => {
 
 // POST /users/register
 const create = async (req, res, next) => {
-  const { email, password, username, isAdmin } = req.body;
+  const { email, password, username } = req.body;
   await UserModel.create({
     email,
     password,
-    username,
-    isAdmin
+    username
   })
     .then(user => {
       const token = jwt.sign({ subject: user._id }, process.env.JWT_KEY);
@@ -31,7 +30,7 @@ const create = async (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-// GET /users/:id/edit (admin only)
+// GET /users/:id/edit
 const edit = async (req, res) => {
   try {
     const user = await UserModel.findById(req.params.id);
@@ -41,15 +40,14 @@ const edit = async (req, res) => {
   }
 };
 
-// PUT /users/:id (admin only)
+// PUT /users/:id
 const update = async (req, res, next) => {
   try {
-    let { email, password, username, isAdmin } = req.body;
+    let { email, password, username } = req.body;
     await UserModel.findByIdAndUpdate(req.params.id, {
       email,
       password,
-      username,
-      isAdmin
+      username
     });
     res.send("Edit successful");
   } catch (err) {
@@ -57,7 +55,7 @@ const update = async (req, res, next) => {
   }
 };
 
-// DELETE users/:id (admin only)
+// DELETE users/:id
 const deleteUser = async (req, res, next) => {
   try {
     await UserModel.findByIdAndRemove(req.params.id);

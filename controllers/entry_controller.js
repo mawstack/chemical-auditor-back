@@ -83,7 +83,7 @@ const show = async (req, res) => {
   }
 };
 
-//DELETE /entries/:id (admin only)
+//DELETE /entries/:id
 const deleteEntry = async (req, res) => {
   try {
     await EntryModel.findByIdAndRemove(req.params.id);
@@ -93,7 +93,7 @@ const deleteEntry = async (req, res) => {
   }
 };
 
-//GET /entries/:id/edit (admin only)
+//GET /entries/:id/edit
 const edit = async (req, res) => {
   try {
     const entry = await EntryModel.findById(req.params.id);
@@ -104,7 +104,7 @@ const edit = async (req, res) => {
 };
 
 //NO DATA = DEFAULT TO NULL (INSTEAD OF PREVIOUS VALUE) > FINE AS LONG AS VALUES PREFILLED VIEW-SIDE
-//PUT /entries/:id (admin only)
+//PUT /entries/:id
 const update = async (req, res) => {
   const {
     startTime,
