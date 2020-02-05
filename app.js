@@ -24,7 +24,7 @@ app.use(cors({
 
 //mongoose
 mongoose
-  .connect("cluster0-shard-00-02-eagps.mongodb.net:27017", {
+  .connect(process.env.DB_HOST, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
