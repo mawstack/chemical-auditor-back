@@ -16,10 +16,11 @@ app.use(passport.session());
 //Allowing all origins - 2/2
 app.use(cors({
   //(Allow all origins)
-  origin: function(origin, callback){
-    return callback(null, true);
-  },
-  credentials: true
+  // origin: function(origin, callback){
+  //   return callback(null, true);
+  // },
+  credentials: true,
+  origin: "*"
 }));
 
 //mongoose
