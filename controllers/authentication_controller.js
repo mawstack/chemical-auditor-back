@@ -9,6 +9,7 @@ const loginCreate = (req, res) => {
       expiresIn: "10d"
     });
     res.cookie("jwtToken", token);
+    res.cookie("SameSite", "None");
     res.send(`${req.user.username} has logged in.`);
   } catch (err) {
     res.send(err);
