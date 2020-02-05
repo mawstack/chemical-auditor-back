@@ -8,7 +8,7 @@ const loginCreate = (req, res) => {
     const token = jwt.sign({ subject: req.user._id }, process.env.JWT_KEY, {
       expiresIn: "10d"
     });
-    res.cookie("jwtToken", token , { sameSite: "None", secure: true });
+    res.cookie("jwtToken", token , { sameSite: "none", secure: true });
     res.send(`${req.user.username} has logged in.`);
   } catch (err) {
     res.send(err);
