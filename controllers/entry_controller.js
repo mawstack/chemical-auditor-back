@@ -28,13 +28,11 @@ const newEntry = async (req, res) => {
   }
 };
 
-//POST /entries
+//POST /entries/create
 const create = async (req, res) => {
   const {
     startTime,
     finishTime,
-    currentLat,
-    currentLong,
     cropRow,
     chemicalUsed,
     whp,
@@ -49,12 +47,9 @@ const create = async (req, res) => {
     date,
     user
   } = req.body;
-
   await EntryModel.create({
     startTime,
     finishTime,
-    currentLat,
-    currentLong,
     cropRow,
     chemicalUsed,
     whp,
@@ -109,8 +104,8 @@ const update = async (req, res) => {
   const {
     startTime,
     finishTime,
-    currentLat,
-    currentLong,
+    // currentLat,
+    // currentLong,
     cropRow,
     chemicalUsed,
     whp,
@@ -132,8 +127,8 @@ const update = async (req, res) => {
       {
         startTime,
         finishTime,
-        currentLat,
-        currentLong,
+        // currentLat,
+        // currentLong,
         cropRow,
         chemicalUsed,
         whp,

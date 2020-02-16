@@ -23,8 +23,8 @@ const create = async (req, res, next) => {
     username
   })
     .then(user => {
-      const token = jwt.sign({ subject: user._id }, process.env.JWT_KEY);
-      res.cookie("jwtToken", token);
+      // const token = jwt.sign({ subject: user._id }, process.env.JWT_KEY);
+      res.cookie("jwtToken", "token");
       res.send("Register Successful, logging in...");
     })
     .catch(err => console.log(err));

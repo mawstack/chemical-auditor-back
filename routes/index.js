@@ -4,25 +4,28 @@ const userRoutes = require("./user_routes");
 const entryRoutes = require("./entry_routes");
 const authenticationRoutes = require("./authentication_routes");
 const pageRoutes = require("./page_routes");
-const passport = require("passport");
+// const passport = require("passport");
 
 // Passport JWT strategy (logged-in check) applied in user_routes.js directly, as it does not apply to the /register route
 
 router.use("/users", userRoutes);
 
-router.use("/entries", passport.authenticate("jwt", {
-        // failureRedirect: "/users/register",
-        session: false
-    }),
+router.use("/entries", 
+    // passport.authenticate("jwt", {
+    //     // failureRedirect: "/users/register",
+    //     session: false
+    // }),
     entryRoutes
 );
 
 // Passport JWT strategy (logged-in check) does not apply to login/logout of authenticationRoutes
 router.use("/", authenticationRoutes);
-router.use("/home", passport.authenticate("jwt", {
-        // failureRedirect: "/users/register",
-        session: false
-    }),
+
+router.use("/home",
+    //  passport.authenticate("jwt", {
+    //     // failureRedirect: "/users/register",
+    //     session: false
+    // }),
     pageRoutes
 );
 
