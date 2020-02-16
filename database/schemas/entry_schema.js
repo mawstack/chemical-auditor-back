@@ -10,14 +10,14 @@ const EntrySchema = new Schema({
     type: Number,
     required: true
   },
-  currentLat: {
-    type: Number,
-    required: true
-  },
-  currentLong: {
-    type: Number,
-    required: true
-  },
+  // currentLat: {
+  //   type: Number,
+  //   required: true
+  // },
+  // currentLong: {
+  //   type: Number,
+  //   required: true
+  // },
   cropRow: {
     type: Number,
     required: true

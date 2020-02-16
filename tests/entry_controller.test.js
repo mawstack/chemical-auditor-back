@@ -7,8 +7,8 @@ describe("Tests for the Entry Controller", () => {
             body: {
                 startTime: 1,
                 finishTime: 2,
-                currentLat: 3,
-                currentLong: 4,
+                // currentLat: 3,
+                // currentLong: 4,
                 cropRow: 5,
                 chemicalUsed: "A",
                 whp: 6,

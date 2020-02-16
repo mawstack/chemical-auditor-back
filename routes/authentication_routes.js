@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const AuthenticationController = require("./../controllers/authentication_controller");
 const { celebrate, Joi, Segments } = require("celebrate");
-const passport = require("passport");
+// const passport = require("passport");
 
 // GET /login for React only
 
@@ -13,10 +13,10 @@ router.post("/login",
             password: Joi.string().required()
         }
     }),
-    passport.authenticate("local", {
-        // failureRedirect: "/login",
-        session: false
-    }),
+    // passport.authenticate("local", {
+    //     // failureRedirect: "/login",
+    //     session: false
+    // }),
     AuthenticationController.loginCreate
 );
 router.post("/logout", AuthenticationController.logout);

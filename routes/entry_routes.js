@@ -8,13 +8,13 @@ router.get("/", EntryController.index);
 router.get("/new", EntryController.newEntry);
 
 router.post(
-  "/",
+  "/create",
   celebrate({
     [Segments.BODY]: {
       startTime: Joi.number().required(),
       finishTime: Joi.number().required(),
-      currentLat: Joi.number().required(),
-      currentLong: Joi.number().required(),
+      // currentLat: Joi.number().required(),
+      // currentLong: Joi.number().required(),
       cropRow: Joi.number().required(),
       chemicalUsed: Joi.string().required(),
       whp: Joi.number().required(),
@@ -43,10 +43,10 @@ router.put(
   "/:id",
   celebrate({
     [Segments.BODY]: {
-      startTime: Joi.number().required(),
-      finishTime: Joi.number().required(),
-      currentLat: Joi.number().required(),
-      currentLong: Joi.number().required(),
+      startTime: Joi.string().required(),
+      finishTime: Joi.string().required(),
+      // currentLat: Joi.number().required(),
+      // currentLong: Joi.number().required(),
       cropRow: Joi.number().required(),
       chemicalUsed: Joi.string().required(),
       whp: Joi.number().required(),
